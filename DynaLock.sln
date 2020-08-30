@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30225.117
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynaLock", "DynaLock\DynaLock.csproj", "{0BAEC3B7-31CA-49D2-89DC-90DBBE463CD0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynaLock.Test", "DynaLock.Test\DynaLock.Test.csproj", "{10B221EF-F840-481C-BC30-728CD7DF7E31}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynaLock.Test", "DynaLock.Test\DynaLock.Test.csproj", "{10B221EF-F840-481C-BC30-728CD7DF7E31}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynaLock.Framework", "DynaLock.Framework\DynaLock.Framework.csproj", "{5E546629-2ED8-4A0C-ACD3-EBE74D83B5CF}"
 EndProject

@@ -21,7 +21,11 @@ namespace DynaLock.Test
         public void Test1()
         {
             Action<TestContext> Deposit = (TestContext testContext) => {
-                using(var monitor = new DynaLock.Monitor(testContext.DynaLockContext, "bankaccount_locker")){
+                using(var monitor = new DynaLock.MonitorBuilder()
+                    .Name("bankaccount_locker")
+                    .Context(testContext.DynaLockContext)
+                    .Build()
+                ){
                     monitor.Enter();
                     if (monitor.IsLockOwned())
                         testContext.BankAccount++;
@@ -29,7 +33,12 @@ namespace DynaLock.Test
             };
 
             Action<TestContext> Withdraw = (TestContext testContext) => {
-                using(var monitor = new DynaLock.Monitor(testContext.DynaLockContext, "bankaccount_locker")){
+                using (var monitor = new DynaLock.MonitorBuilder()
+                    .Name("bankaccount_locker")
+                    .Context(testContext.DynaLockContext)
+                    .Build()
+                )
+                {
                     monitor.Enter();
                     if (monitor.IsLockOwned())
                         testContext.BankAccount--;
