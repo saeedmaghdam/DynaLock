@@ -1,6 +1,11 @@
 # ChangeLog
 All notable changes to this project will be documented in this file.
 
+## 1.0.4 - 2020-08-30
+### Added
+- IBuilder to famework
+- MonitorBuilder to hide construction complexities
+
 ## 1.0.3 - 2020-08-30
 ### Added
 - Added unit test project

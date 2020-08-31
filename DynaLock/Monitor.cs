@@ -9,37 +9,34 @@ namespace DynaLock
         private readonly object _currentLockObject;
         private bool _isLockOwned = false;
 
-        public Monitor(Context.Monitor context, string lockerName)
+        public Monitor(Context.Monitor context, string name)
         {
             if (context != null){
-                if (!context.LockerDictionary.TryGetValue(lockerName, out _currentLockObject))
+                if (!context.LockerDictionary.TryGetValue(name, out _currentLockObject))
                 {
                     lock (context.GenericLockerObject)
                     {
-                        if (!context.LockerDictionary.TryGetValue(lockerName, out _currentLockObject))
+                        if (!context.LockerDictionary.TryGetValue(name, out _currentLockObject))
                         {
                             _currentLockObject = new object();
-                            context.LockerDictionary.TryAdd(lockerName, _currentLockObject);
+                            context.LockerDictionary.TryAdd(name, _currentLockObject);
                         }
                     }
                 }
             } else {
-                if (!_lockerDictionary.TryGetValue(lockerName, out _currentLockObject))
+                if (!_lockerDictionary.TryGetValue(name, out _currentLockObject))
                 {
                     lock (GenericLockerObject)
                     {
-                        if (!_lockerDictionary.TryGetValue(lockerName, out _currentLockObject))
+                        if (!_lockerDictionary.TryGetValue(name, out _currentLockObject))
                         {
                             _currentLockObject = new object();
-                            _lockerDictionary.TryAdd(lockerName, _currentLockObject);
+                            _lockerDictionary.TryAdd(name, _currentLockObject);
                         }
                     }
                 }
             }
         }
-        public Monitor() : this(null, string.Empty) {}
-        public Monitor(string lockerName) : this(null, lockerName) {}
-        public Monitor(Context.Monitor context) : this(context, string.Empty) {}
 
         public bool IsLockOwned() => _isLockOwned;
 

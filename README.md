@@ -26,7 +26,7 @@ Package Manager Console - Visual Studio:
 
 ```sh
 
-Install-Package DynaLock -Version 1.0.3
+Install-Package DynaLock -Version 1.0.4
 
 ```
 
@@ -46,7 +46,10 @@ DynaLock is easy to use.
 
 ```cs
 
-using (var monitor = DynaLock.Monitor("enter_a_unique_name")){
+using (var monitor = new DynaLock.MonitorBuilder()
+	.Name("enter_a_unique_name")
+	.Build()
+){
 
 	...
 
@@ -76,7 +79,11 @@ And if you've more domain and would like to have individual context per domain, 
 DynaLock.Context.Monitor domain1_context  =  new  DynaLock.Context.Monitor()
 DynaLock.Context.Monitor domain2_context  =  new  DynaLock.Context.Monitor()
 
-using (var monitor = new DynaLock.Monitor(domain1_context, "enter_a_unique_name_in_current_domain")){
+using (var monitor = new DynaLock.MonitorBuilder()
+	.Context(domain1_context)
+	.Name("enter_a_unique_name_in_current_domain")
+	.Build()
+){
 
 	...
 
@@ -101,7 +108,11 @@ using (var monitor = new DynaLock.Monitor(domain1_context, "enter_a_unique_name_
 
 
 
-using (var monitor = new DynaLock.Monitor(domain2_context, "enter_a_unique_name_in_current_domain")){
+using (var monitor = new DynaLock.MonitorBuilder()
+	.Context(domain2_context)
+	.Name("enter_a_unique_name_in_current_domain")
+	.Build()
+){
 
 	...
 

@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynaLock", "DynaLock\DynaLo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynaLock.Test", "DynaLock.Test\DynaLock.Test.csproj", "{10B221EF-F840-481C-BC30-728CD7DF7E31}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynaLock.Framework", "DynaLock.Framework\DynaLock.Framework.csproj", "{5E546629-2ED8-4A0C-ACD3-EBE74D83B5CF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,14 +19,14 @@ Global
 		{0BAEC3B7-31CA-49D2-89DC-90DBBE463CD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0BAEC3B7-31CA-49D2-89DC-90DBBE463CD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0BAEC3B7-31CA-49D2-89DC-90DBBE463CD0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B7149548-F94A-4514-A0F4-B3D7C1CA0392}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B7149548-F94A-4514-A0F4-B3D7C1CA0392}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B7149548-F94A-4514-A0F4-B3D7C1CA0392}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B7149548-F94A-4514-A0F4-B3D7C1CA0392}.Release|Any CPU.Build.0 = Release|Any CPU
 		{10B221EF-F840-481C-BC30-728CD7DF7E31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{10B221EF-F840-481C-BC30-728CD7DF7E31}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{10B221EF-F840-481C-BC30-728CD7DF7E31}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{10B221EF-F840-481C-BC30-728CD7DF7E31}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E546629-2ED8-4A0C-ACD3-EBE74D83B5CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E546629-2ED8-4A0C-ACD3-EBE74D83B5CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E546629-2ED8-4A0C-ACD3-EBE74D83B5CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E546629-2ED8-4A0C-ACD3-EBE74D83B5CF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
