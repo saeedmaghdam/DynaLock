@@ -7,5 +7,6 @@ namespace DynaLock
         bool IsLockOwned();
         void Enter();
         bool TryEnter(int millisecondsTimeout = 0);
+        void Exit();
     }
 }

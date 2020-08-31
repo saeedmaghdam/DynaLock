@@ -26,7 +26,7 @@ Package Manager Console - Visual Studio:
 
 ```sh
 
-Install-Package DynaLock -Version 1.0.0
+Install-Package DynaLock -Version 1.0.1
 
 ```
 

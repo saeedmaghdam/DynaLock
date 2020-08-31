@@ -37,10 +37,15 @@ namespace DynaLock
             return _isLockOwned;
         }
 
-        public void Dispose()
+        public void Exit()
         {
             if (_isLockOwned)
                 System.Threading.Monitor.Exit(_currentLockObject);
+        }
+
+        public void Dispose()
+        {
+            Exit();
         }
     }
 }
