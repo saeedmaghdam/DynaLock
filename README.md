@@ -26,7 +26,7 @@ Package Manager Console - Visual Studio:
 
 ```sh
 
-Install-Package DynaLock -Version 1.0.2
+Install-Package DynaLock -Version 1.0.3
 
 ```
 
@@ -126,6 +126,8 @@ using (var monitor = new DynaLock.Monitor(domain2_context, "enter_a_unique_name_
 ```
 
 In the above senario, all resources are completely seperated per context and CPU(s) will not be wasted anymore. 
+
+Also, you could find working examples in [DynaLock.Test] project.
   
   
 ## Release History

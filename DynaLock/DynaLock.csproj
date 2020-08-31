@@ -2,9 +2,9 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>1.0.2</Version>
-    <AssemblyVersion>1.0.1.2</AssemblyVersion>
-    <FileVersion>1.0.1.2</FileVersion>
+    <Version>1.0.3</Version>
+    <AssemblyVersion>1.0.1.3</AssemblyVersion>
+    <FileVersion>1.0.1.3</FileVersion>
     <Description>DynaLock is a library to create and manage locks dynamically in run-time in concurrent software, DynaLock hides all concurrency complexities in distributed systems.
 Please visit DynaLock's github page for more information.
 https://github.com/saeedmaghdam/DynaLock</Description>
@@ -13,6 +13,7 @@ https://github.com/saeedmaghdam/DynaLock</Description>
     <PackageProjectUrl>https://github.com/saeedmaghdam/DynaLock</PackageProjectUrl>
     <RepositoryUrl>https://github.com/saeedmaghdam/DynaLock</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/saeedmaghdam/DynaLock</RepositoryUrl>
     <PackageTags>DynaLock,Concurrent,Distributed Systems,Concurrency,Lock,Monitor,Semaphore,Thread,Task,MultiThreading</PackageTags>
     <NeutralLanguage>en-US</NeutralLanguage>
   </PropertyGroup>
