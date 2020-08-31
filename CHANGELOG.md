@@ -1,6 +1,13 @@
 # ChangeLog
 All notable changes to this project will be documented in this file.
 
+## 1.1.0 - 2020-08-30
+### Added
+- Added Semaphore to DynaLock
+
+### Changed
+- Applied MonitorBuilder in unit test project
+
 ## 1.0.4 - 2020-08-30
 ### Added
 - IBuilder to famework

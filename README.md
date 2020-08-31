@@ -12,8 +12,8 @@ DynaLock is a library to create and manage locks dynamically in run-time in conc
 DynaLock currently supports Monitor and Semaphore.
 
 ## Important
-#### DynaLock is currecntly under development and only supports Monitor
-#### In a very near future, Semaphore will be added to DynaLock
+#### DynaLock is currecntly under development and only supports Monitor and Semaphore.
+#### In a very near future, new features will be added to DynaLock
 #### Please contribute in development!
 
 ## Installation
@@ -26,7 +26,7 @@ Package Manager Console - Visual Studio:
 
 ```sh
 
-Install-Package DynaLock -Version 1.0.4
+Install-Package DynaLock -Version 1.1.0
 
 ```
 
@@ -145,6 +145,10 @@ Also, you could find working examples in [DynaLock.Test] project.
 
   
 ### Visit [CHANGELOG.md] to see full change log history of DynaLock
+
+* 1.1.0
+
+	* Added Semaphore to DynaLock
 
 * 1.0.0
 
