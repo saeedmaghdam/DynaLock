@@ -26,7 +26,7 @@ Package Manager Console - Visual Studio:
 
 ```sh
 
-Install-Package DynaLock -Version 1.0.1
+Install-Package DynaLock -Version 1.0.2
 
 ```
 
@@ -69,6 +69,63 @@ using (var monitor = DynaLock.Monitor("enter_a_unique_name")){
 }
 
 ```
+
+And if you've more domain and would like to have individual context per domain, you could use DynaLock like:
+
+```cs
+DynaLock.Context.Monitor domain1_context  =  new  DynaLock.Context.Monitor()
+DynaLock.Context.Monitor domain2_context  =  new  DynaLock.Context.Monitor()
+
+using (var monitor = new DynaLock.Monitor(domain1_context, "enter_a_unique_name_in_current_domain")){
+
+	...
+
+	monitor.TryEnter();
+
+	...
+
+	if (monitor.IsLockOwned){
+
+		// Some code
+
+	} else {
+
+		// Some code
+
+	}
+
+	...
+
+}
+
+
+
+
+using (var monitor = new DynaLock.Monitor(domain2_context, "enter_a_unique_name_in_current_domain")){
+
+	...
+
+	monitor.TryEnter();
+
+	...
+
+	if (monitor.IsLockOwned){
+
+		// Some code
+
+	} else {
+
+		// Some code
+
+	}
+
+	...
+
+}
+
+```
+
+In the above senario, all resources are completely seperated per context and CPU(s) will not be wasted anymore. 
   
   
 ## Release History

@@ -9,20 +9,37 @@ namespace DynaLock
         private readonly object _currentLockObject;
         private bool _isLockOwned = false;
 
-        public Monitor(string lockerName = "")
+        public Monitor(Context.Monitor context, string lockerName)
         {
-            if (!_lockerDictionary.TryGetValue(lockerName, out _currentLockObject))
-            {
-                lock (GenericLockerObject)
+            if (context != null){
+                if (!context.LockerDictionary.TryGetValue(lockerName, out _currentLockObject))
                 {
-                    if (!_lockerDictionary.TryGetValue(lockerName, out _currentLockObject))
+                    lock (context.GenericLockerObject)
                     {
-                        _currentLockObject = new object();
-                        _lockerDictionary.TryAdd(lockerName, _currentLockObject);
+                        if (!context.LockerDictionary.TryGetValue(lockerName, out _currentLockObject))
+                        {
+                            _currentLockObject = new object();
+                            context.LockerDictionary.TryAdd(lockerName, _currentLockObject);
+                        }
+                    }
+                }
+            } else {
+                if (!_lockerDictionary.TryGetValue(lockerName, out _currentLockObject))
+                {
+                    lock (GenericLockerObject)
+                    {
+                        if (!_lockerDictionary.TryGetValue(lockerName, out _currentLockObject))
+                        {
+                            _currentLockObject = new object();
+                            _lockerDictionary.TryAdd(lockerName, _currentLockObject);
+                        }
                     }
                 }
             }
         }
+        public Monitor() : this(null, string.Empty) {}
+        public Monitor(string lockerName) : this(null, lockerName) {}
+        public Monitor(Context.Monitor context) : this(context, string.Empty) {}
 
         public bool IsLockOwned() => _isLockOwned;
 
