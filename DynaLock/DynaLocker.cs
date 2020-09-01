@@ -14,6 +14,12 @@ namespace DynaLock
             _context = context;
         }
 
+        public object MetaData
+        {
+            get => ContextMapper.Invoke(_context).MetaData;
+            set => ContextMapper.Invoke(_context).MetaData = value;
+        }
+
         public bool IsLockOwned() => _isLockOwned;
 
         public virtual void Dispose()

@@ -13,5 +13,11 @@ namespace DynaLock.Framework
         {
             get;
         }
+
+        object MetaData
+        {
+            get;
+            set;
+        }
     }
 }

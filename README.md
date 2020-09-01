@@ -2,6 +2,7 @@
 
 
 
+
 # DynaLock
 
 > Create and manage locks dynamically in run-time in concurrent software
@@ -15,6 +16,18 @@ DynaLock currently supports Monitor and Semaphore.
 #### DynaLock is currecntly under development and only supports Monitor and Semaphore.
 #### In a very near future, new features will be added to DynaLock
 #### Please contribute in development!
+
+## Features
+* ### DynaLock's Monitor
+	* Create and manage locker objects dynamically in run-time
+* ### DynaLock's Semaphore
+	* Create and manage semaphore objects dynamically in run-time
+* ### DynaLock's Context
+	* Create specific work space for different domains to avoid CPU and resource wasting, improve performance, etc.
+	* Both DynaLock's Monitor and DynaLock's Semaphore could be injected a context using builder class.
+* ### DynaLock's Meta-Data
+	* An object that be used to store some info like string values, integers, instances of spesific classes and data structures, so meta-data could be accesses from different threads in current domain.
+	* Both DynaLock's Monitor and DynaLock's Semaphore could be injected a meta-data object using property.
 
 ## Installation
 
