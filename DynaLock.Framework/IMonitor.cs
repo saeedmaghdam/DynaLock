@@ -1,10 +1,7 @@
-﻿using System;
-
-namespace DynaLock
+﻿namespace DynaLock.Framework
 {
-    public interface IMonitor : IDisposable
+    public interface IMonitor
     {
-        bool IsLockOwned();
         void Enter();
         bool TryEnter(int millisecondsTimeout = 0);
         void Exit();

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DynaLock
+﻿namespace DynaLock
 {
     public class SemaphoreBuilder
     {

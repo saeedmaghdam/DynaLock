@@ -111,12 +111,13 @@ namespace DynaLock.Test
                 }));
             }
 
-            // for(int i = 0; i < 10000; i++)
-            // {
-            //     tasks.Add(Task.Factory.StartNew(() => {
-            //         Withdraw(p4Context);
-            //     }));
-            // }
+            for (int i = 0; i < 10000; i++)
+            {
+                tasks.Add(Task.Factory.StartNew(() =>
+                {
+                    Withdraw(p4Context);
+                }));
+            }
 
             Task.WaitAll(tasks.ToArray());
 

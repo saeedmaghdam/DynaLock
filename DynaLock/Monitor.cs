@@ -1,63 +1,47 @@
-﻿using System.Collections.Concurrent;
+﻿using DynaLock.Framework;
 
 namespace DynaLock
 {
-    public class Monitor : IMonitor
+    public class Monitor : DynaLocker, IMonitor
     {
-        private static readonly ConcurrentDictionary<string, object> _lockerDictionary = new ConcurrentDictionary<string, object>();
-        private static readonly object GenericLockerObject = new object();
-        private readonly object _currentLockObject;
-        private bool _isLockOwned = false;
+        private static IContext _defaultContext = new Context.Monitor();
+        private readonly object _currentObject;
 
-        public Monitor(Context.Monitor context, string name)
+        public Monitor(Context.Monitor context, string name) : base(context)
         {
-            if (context != null){
-                if (!context.LockerDictionary.TryGetValue(name, out _currentLockObject))
+            ContextMapper = ctx => ctx ?? _defaultContext;
+
+            if (!ContextMapper.Invoke(context).ObjectDictionary.TryGetValue(name, out _currentObject))
+            {
+                lock (ContextMapper.Invoke(context).LockerObject)
                 {
-                    lock (context.GenericLockerObject)
+                    if (!ContextMapper.Invoke(context).ObjectDictionary.TryGetValue(name, out _currentObject))
                     {
-                        if (!context.LockerDictionary.TryGetValue(name, out _currentLockObject))
-                        {
-                            _currentLockObject = new object();
-                            context.LockerDictionary.TryAdd(name, _currentLockObject);
-                        }
-                    }
-                }
-            } else {
-                if (!_lockerDictionary.TryGetValue(name, out _currentLockObject))
-                {
-                    lock (GenericLockerObject)
-                    {
-                        if (!_lockerDictionary.TryGetValue(name, out _currentLockObject))
-                        {
-                            _currentLockObject = new object();
-                            _lockerDictionary.TryAdd(name, _currentLockObject);
-                        }
+                        _currentObject = new object();
+                        ContextMapper.Invoke(context).ObjectDictionary.TryAdd(name, _currentObject);
                     }
                 }
             }
         }
 
-        public bool IsLockOwned() => _isLockOwned;
-
         public void Enter()
         {
-            System.Threading.Monitor.Enter(_currentLockObject, ref _isLockOwned);
+            System.Threading.Monitor.Enter(_currentObject, ref _isLockOwned);
         }
 
         public bool TryEnter(int millisecondsTimeout = 0)
         {
-            System.Threading.Monitor.TryEnter(_currentLockObject, millisecondsTimeout, ref _isLockOwned);
+            System.Threading.Monitor.TryEnter(_currentObject, millisecondsTimeout, ref _isLockOwned);
             return _isLockOwned;
         }
 
         public void Exit()
         {
             if (_isLockOwned)
-                System.Threading.Monitor.Exit(_currentLockObject);
+                System.Threading.Monitor.Exit(_currentObject);
         }
 
-        public void Dispose()
+        public override void Dispose()
         {
             Exit();
         }

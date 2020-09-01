@@ -1,18 +1,19 @@
+using DynaLock.Framework;
 using System.Collections.Concurrent;
 
 namespace DynaLock.Context
 {
-    public class Semaphore
+    public class Semaphore : IContext
     {
-        private static ConcurrentDictionary<string, System.Threading.Semaphore> _semaphoreDictionary;
-        private static object _genericLockerObject;
+        private ConcurrentDictionary<string, object> _objectDictionary;
+        private object _lockerObject;
 
-        public ConcurrentDictionary<string, System.Threading.Semaphore> SemaphoreDictionary => _semaphoreDictionary;
-        public object GenericLockerObject => _genericLockerObject;
+        public ConcurrentDictionary<string, object> ObjectDictionary => _objectDictionary;
+        public object LockerObject => _lockerObject;
 
         public Semaphore(){
-            _semaphoreDictionary = new ConcurrentDictionary<string, System.Threading.Semaphore>();
-            _genericLockerObject = new object();
+            _objectDictionary = new ConcurrentDictionary<string, object>();
+            _lockerObject = new object();
         }
     }
 }

@@ -36,7 +36,7 @@ namespace DynaLock.Test
             };
 
             bool assertResult = true;
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 3; i++)
             {
                 List<Task<bool>> tasks = new List<Task<bool>>();
                 for (int j = 0; j < 12; j++)

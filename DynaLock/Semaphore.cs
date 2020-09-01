@@ -1,71 +1,45 @@
-﻿using System;
-using System.Collections.Concurrent;
+﻿using DynaLock.Framework;
 
 namespace DynaLock
 {
-    public class Semaphore : ISemaphore
+    public class Semaphore : DynaLocker, ISemaphore
     {
-        private static readonly ConcurrentDictionary<string, System.Threading.Semaphore> _lockerDictionary = new ConcurrentDictionary<string, System.Threading.Semaphore>();
-        private static readonly object GenericLockerObject = new object();
-        private readonly System.Threading.Semaphore _currentSemaphore;
-        private bool _isLockOwned = false;
+        private static IContext _defaultContext = new Context.Semaphore();
+        private readonly System.Threading.Semaphore _currentObject;
 
-        public Semaphore(Context.Semaphore context, string name, int initialCount, int maximumCount)
+        public Semaphore(Context.Semaphore context, string name, int initialCount, int maximumCount) : base(context)
         {
-            if (context != null)
-            {
-                if (!context.SemaphoreDictionary.TryGetValue(name, out _currentSemaphore))
-                {
-                    lock (context.GenericLockerObject)
-                    {
-                        if (!context.SemaphoreDictionary.TryGetValue(name, out _currentSemaphore))
-                        {
-                            _currentSemaphore = new System.Threading.Semaphore(initialCount, maximumCount, name);
-                            context.SemaphoreDictionary.TryAdd(name, _currentSemaphore);
-                        }
-                    }
-                }
-            }
-            else
-            {
-                if (!_lockerDictionary.TryGetValue(name, out _currentSemaphore))
-                {
-                    lock (GenericLockerObject)
-                    {
-                        if (!_lockerDictionary.TryGetValue(name, out _currentSemaphore))
-                        {
-                            _currentSemaphore = new System.Threading.Semaphore(initialCount, maximumCount, name);
-                            _lockerDictionary.TryAdd(name, _currentSemaphore);
-                        }
-                    }
-                }
-            }
-        }
+            ContextMapper = ctx => ctx ?? _defaultContext;
 
-        public bool IsLockOwned() => _isLockOwned;
+            if (!ContextMapper.Invoke(context).ObjectDictionary.TryGetValue(name, out var tempSemaphore))
+            {
+                lock (ContextMapper.Invoke(context).LockerObject)
+                {
+                    if (!ContextMapper.Invoke(context).ObjectDictionary.TryGetValue(name, out tempSemaphore))
+                    {
+                        _currentObject = new System.Threading.Semaphore(initialCount, maximumCount, name);
+                        ContextMapper.Invoke(context).ObjectDictionary.TryAdd(name, _currentObject);
+                    }
+                }
+            }
+
+            if (tempSemaphore != null)
+                _currentObject = (System.Threading.Semaphore)tempSemaphore;
+        }
 
         public void WaitOne(int millisecondsTimeout = 0)
         {
-            if (_currentSemaphore.WaitOne(millisecondsTimeout))
+            if (_currentObject.WaitOne(millisecondsTimeout))
                 _isLockOwned = true;
         }
 
         public void Release()
         {
             if (_isLockOwned)
-            {
-                try
-                {
-                    _currentSemaphore.Release();
-                }
-                catch (Exception)
-                {
-                    // ignored
-                }
-            }
+                _currentObject.Release();
         }
 
-        public void Dispose()
+        public override void Dispose()
         {
             Release();
         }
