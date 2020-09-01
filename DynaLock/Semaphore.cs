@@ -2,11 +2,21 @@
 
 namespace DynaLock
 {
+    /// <summary>
+    /// DynaLocker Monitor to create and manage semaphores dynamically in run-time
+    /// </summary>
     public class Semaphore : DynaLocker, ISemaphore
     {
         private static IContext _defaultContext = new Context.Semaphore();
         private readonly System.Threading.Semaphore _currentObject;
 
+        /// <summary>
+        /// Constructor of Semaphore class
+        /// </summary>
+        /// <param name="context">Specify a context to have different contexts in different domains</param>
+        /// <param name="name">Name of the new Semaphore</param>
+        /// <param name="initialCount">The initial number of requests for the semaphore that can be granted concurrently.</param>
+        /// <param name="maximumCount">The maximum number of requests for the semaphore that can be granted concurrently.</param>
         public Semaphore(Context.Semaphore context, string name, int initialCount, int maximumCount) : base(context)
         {
             ContextMapper = ctx => ctx ?? _defaultContext;
@@ -27,18 +37,28 @@ namespace DynaLock
                 _currentObject = (System.Threading.Semaphore)tempSemaphore;
         }
 
+        /// <summary>
+        /// Blocks the current thread until the current object receives a signal.
+        /// </summary>
+        /// <param name="millisecondsTimeout">The number of milliseconds to wait, or Infinite (-1) to wait indefinitely.</param>
         public void WaitOne(int millisecondsTimeout = 0)
         {
             if (_currentObject.WaitOne(millisecondsTimeout))
                 _isLockOwned = true;
         }
 
+        /// <summary>
+        /// Release the current semaphore and send a signal to others.
+        /// </summary>
         public void Release()
         {
             if (_isLockOwned)
                 _currentObject.Release();
         }
 
+        /// <summary>
+        /// Dispose the current Semaphore
+        /// </summary>
         public override void Dispose()
         {
             Release();

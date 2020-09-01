@@ -1,5 +1,14 @@
+
 # ChangeLog
 All notable changes to this project will be documented in this file.
+
+## 2.0.0 - 2020-09-02
+### Added
+-	Meta-data object to contexts
+-	Added comments to methods, properties and classes
+
+### Changed
+- Refactored and improved the source code
 
 ## 1.1.0 - 2020-08-30
 ### Added
