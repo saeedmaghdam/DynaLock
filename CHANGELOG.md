@@ -2,6 +2,10 @@
 # ChangeLog
 All notable changes to this project will be documented in this file.
 
+## 2.0.1 - 2020-09-02
+### Fixed
+-	Fixed a bug where dependencies not included in nuget package
+
 ## 2.0.0 - 2020-09-02
 ### Added
 -	Meta-data object to contexts

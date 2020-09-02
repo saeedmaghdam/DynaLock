@@ -2,9 +2,9 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>2.0.0</Version>
-    <AssemblyVersion>2.0.0.0</AssemblyVersion>
-    <FileVersion>2.0.0.0</FileVersion>
+    <Version>2.0.1</Version>
+    <AssemblyVersion>2.0.0.1</AssemblyVersion>
+    <FileVersion>2.0.0.1</FileVersion>
     <Description>DynaLock is a library to create and manage locks dynamically in run-time in concurrent software, DynaLock hides all concurrency complexities in distributed systems.
 Please visit DynaLock's github page for more information.
 https://github.com/saeedmaghdam/DynaLock</Description>
@@ -16,10 +16,21 @@ https://github.com/saeedmaghdam/DynaLock</Description>
     <RepositoryUrl>https://github.com/saeedmaghdam/DynaLock</RepositoryUrl>
     <PackageTags>DynaLock,Concurrent,Distributed Systems,Concurrency,Lock,Monitor,Semaphore,Thread,Task,MultiThreading</PackageTags>
     <NeutralLanguage>en-US</NeutralLanguage>
+	<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+	<TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DynaLock.Framework\DynaLock.Framework.csproj" />
+    <ProjectReference Include="..\DynaLock.Framework\DynaLock.Framework.csproj">
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+      <IncludeAssets>DynaLock.Framework.dll</IncludeAssets>
+    </ProjectReference>
   </ItemGroup>
+  
+  <Target DependsOnTargets="ResolveReferences" Name="CopyProjectReferencesToPackage">
+    <ItemGroup>
+      <BuildOutputInPackage Include="@(ReferenceCopyLocalPaths->WithMetadataValue('ReferenceSourceTarget', 'ProjectReference'))"/>
+    </ItemGroup>
+  </Target>
 
 </Project>
