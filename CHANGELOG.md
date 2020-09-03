@@ -2,6 +2,12 @@
 # ChangeLog
 All notable changes to this project will be documented in this file.
 
+## 2.1.0 - 2020-09-03
+### Fixed
+-	Fixed a bug where monitor's exit method and semaphore's release method caused an error
+### Changed
+-	Moved DynaLock.Framework project inside Framework folder on DynaLock
+
 ## 2.0.1 - 2020-09-02
 ### Fixed
 -	Fixed a bug where dependencies not included in nuget package
