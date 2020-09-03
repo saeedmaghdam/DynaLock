@@ -53,7 +53,10 @@ namespace DynaLock
         public void Release()
         {
             if (_isLockOwned)
+            {
                 _currentObject.Release();
+                _isLockOwned = false;
+            }
         }
 
         /// <summary>
