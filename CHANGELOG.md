@@ -2,6 +2,15 @@
 # ChangeLog
 All notable changes to this project will be documented in this file.
 
+## 2.2.0 - 2020-09-05
+### Added
+-	Added AutoResetEvent to DynaLock library
+-	Added AutoResetEvent unit test to unit test project
+-	Added DynaLock factory
+
+### Changed
+-	Downgraded DynaLock's .NetStandard dependency to version 1.1
+
 ## 2.1.0 - 2020-09-03
 ### Fixed
 -	Fixed a bug where monitor's exit method and semaphore's release method caused an error

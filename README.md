@@ -2,10 +2,10 @@
 > Create and manage locks dynamically in run-time in concurrent software
 
 DynaLock is a library to create and manage locks dynamically in run-time in concurrent software, DynaLock hides all concurrency complexities in distributed systems.
-DynaLock currently supports Monitor and Semaphore.
+DynaLock currently supports Monitor, Semaphore and AutoResetEvent.
 
 ## Important
-#### DynaLock is currecntly under development and only supports Monitor and Semaphore.
+#### DynaLock is currecntly under development and only supports Monitor, Semaphore and AutoResetEvent.
 #### In a very near future, new features will be added to DynaLock
 #### Please contribute in development!
 
@@ -14,22 +14,50 @@ DynaLock currently supports Monitor and Semaphore.
 	* Create and manage locker objects dynamically in run-time
 * ### DynaLock's Semaphore
 	* Create and manage semaphore objects dynamically in run-time
+* ### DynaLock's AutoResetEvent
+	* Create and manage auto reset event objects dynamically in run-time	
 * ### DynaLock's Context
 	* Create specific work space for different domains to avoid CPU and resource wasting, improve performance, etc.
 	* Both DynaLock's Monitor and DynaLock's Semaphore could be injected a context using builder class.
 * ### DynaLock's Meta-Data
 	* An object that be used to store some info like string values, integers, instances of spesific classes and data structures, so meta-data could be accesses from different threads in current domain.
 	* Both DynaLock's Monitor and DynaLock's Semaphore could be injected a meta-data object using property.
+	
 
 ## Installation
 
-Package Manager Console - Visual Studio:
+To install DynaLock in Visual Studio's Package Manager Console:
 
 ```sh
 
-Install-Package DynaLock -Version 2.1.0
+Install-Package DynaLock -Version 2.2.0
 
 ```
+
+To install in a specific project use:
+
+```sh
+
+Install-Package DynaLock -Version 2.2.0 -ProjectName Your_Project_Name
+
+```
+
+To update package use:
+
+```sh
+
+Update-Package DynaLock
+
+```
+
+To update package in a specific project use:
+
+```sh
+
+Update-Package DynaLock -ProjectName Your_Project_Name
+
+```
+
 
 Or visit DynaLock's [Nuget][nuget-page] page to get more information.
 
@@ -104,6 +132,8 @@ Also, you could find working examples in [DynaLock.Test] project.
   
 ### Visit [CHANGELOG.md] to see full change log history of DynaLock
 
+* 2.2.0
+	* Added AutoResetEvent to DynaLock
 * 2.0.0
 	* Added meta-data to contexts
 	* Refactored and improved the source code
