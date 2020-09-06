@@ -30,7 +30,7 @@ To install DynaLock in Visual Studio's Package Manager Console:
 
 ```sh
 
-Install-Package DynaLock -Version 2.2.0
+Install-Package DynaLock -Version [Version]
 
 ```
 
@@ -38,7 +38,7 @@ To install in a specific project use:
 
 ```sh
 
-Install-Package DynaLock -Version 2.2.0 -ProjectName Your_Project_Name
+Install-Package DynaLock -Version [Version] -ProjectName Your_Project_Name
 
 ```
 
@@ -162,12 +162,10 @@ Distributed under the MIT license. See [``LICENSE``][github-license] for more in
 <!-- Markdown link & img dfn's -->
 
 [linkedin]:https://www.linkedin.com/in/saeedmaghdam/
-
 [nuget-page]:https://www.nuget.org/packages/DynaLock
-
 [github]: https://github.com/saeedmaghdam/
-
 [github-page]: https://github.com/saeedmaghdam/DynaLock/
 [github-license]: https://raw.githubusercontent.com/saeedmaghdam/DynaLock/master/LICENSE
 [CHANGELOG.md]: https://github.com/saeedmaghdam/DynaLock/blob/master/CHANGELOG.md
 [DynaLock.Test]: https://github.com/saeedmaghdam/DynaLock/tree/master/DynaLock.Test
+[Version]: 2.2.1
