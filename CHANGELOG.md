@@ -2,6 +2,10 @@
 # ChangeLog
 All notable changes to this project will be documented in this file.
 
+## 2.2.1 - 2020-09-06
+### Changed
+-	Upgraded framework version to .Net Standard 2.0
+
 ## 2.2.0 - 2020-09-05
 ### Added
 -	Added AutoResetEvent to DynaLock library
