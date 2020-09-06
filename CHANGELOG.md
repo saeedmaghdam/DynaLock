@@ -2,6 +2,10 @@
 # ChangeLog
 All notable changes to this project will be documented in this file.
 
+## 2.2.2 - 2020-09-06
+### Changed
+-	Multi-targeted DynaLock framework to .Net Standard 1.1 and .Net Framework 4.5
+
 ## 2.2.1 - 2020-09-06
 ### Changed
 -	Upgraded framework version to .Net Standard 2.0
