@@ -53,5 +53,30 @@ namespace DynaLock.Framework
         /// Set meta data to null
         /// </summary>
         void SetMetaDataNull();
+
+        IFlag Flag1
+        {
+            get;
+        }
+
+        IFlag Flag2
+        {
+            get;
+        }
+
+        IFlag Flag3
+        {
+            get;
+        }
+
+        IFlag Flag4
+        {
+            get;
+        }
+
+        IFlag Flag5
+        {
+            get;
+        }
     }
 }

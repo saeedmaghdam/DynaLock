@@ -2,6 +2,10 @@
 # ChangeLog
 All notable changes to this project will be documented in this file.
 
+## 2.4.1 - 2020-09-22
+### Added
+-	Added flags to IContext interface
+
 ## 2.4.0 - 2020-09-22
 ### Added
 -	Added flag to DynaLock to give more power to developers
