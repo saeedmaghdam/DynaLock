@@ -2,6 +2,10 @@
 # ChangeLog
 All notable changes to this project will be documented in this file.
 
+## 2.3.2 - 2020-09-22
+###	Changed
+-	Changed IsMetaDataNull return type to boolean
+
 ## 2.3.1 - 2020-09-22
 ### Added
 -	Added locking feature to context classes

@@ -42,7 +42,7 @@ namespace DynaLock.Context
             }
         }
 
-        public object IsMetaDataNull
+        public bool IsMetaDataNull
         {
             get
             {

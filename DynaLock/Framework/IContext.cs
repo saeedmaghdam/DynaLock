@@ -45,7 +45,7 @@ namespace DynaLock.Framework
         /// <summary>
         /// Indicated whether meta data is null or not
         /// </summary>
-        object IsMetaDataNull
+        bool IsMetaDataNull
         {
             get;
         }
