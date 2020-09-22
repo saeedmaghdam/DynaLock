@@ -15,6 +15,18 @@ namespace DynaLock.Context
         private object _contextLocker = new object();
         private bool _isContextLocked = false;
 
+        private IFlag _flag1;
+        private IFlag _flag2;
+        private IFlag _flag3;
+        private IFlag _flag4;
+        private IFlag _flag5;
+
+        public IFlag Flag1 => _flag1;
+        public IFlag Flag2 => _flag2;
+        public IFlag Flag3 => _flag3;
+        public IFlag Flag4 => _flag4;
+        public IFlag Flag5 => _flag5;
+
         /// <summary>
         /// A dictionary to store objects required by DynaLocker
         /// </summary>
@@ -51,16 +63,22 @@ namespace DynaLock.Context
             }
         }
 
-        public void SetMetaDataNull()
-        {
-            lock (_metaDataLocker)
-                _metaData = null;
-        }
-
         protected ContextAbstract()
         {
             _lockerObject = new List<object>();
             _objectDictionary = new ConcurrentDictionary<string, object>();
+
+            _flag1 = new Flag();
+            _flag2 = new Flag();
+            _flag3 = new Flag();
+            _flag4 = new Flag();
+            _flag5 = new Flag();
+        }
+
+        public void SetMetaDataNull()
+        {
+            lock (_metaDataLocker)
+                _metaData = null;
         }
 
         public bool Lock()

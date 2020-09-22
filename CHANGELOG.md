@@ -1,6 +1,11 @@
 
 # ChangeLog
 All notable changes to this project will be documented in this file.
+
+## 2.4.0 - 2020-09-22
+### Added
+-	Added flag to DynaLock to give more power to developers
+
 ## 2.3.3 - 2020-09-22
 ### Fixed
 -	Fixed a bug where locking context caused 'Argument must be initialized to false' error
