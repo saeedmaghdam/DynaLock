@@ -15,7 +15,8 @@ namespace DynaLock
         /// </summary>
         /// <param name="context">Specify a context to have different contexts in different domains</param>
         /// <param name="name">Name of the new ManualResetEvent</param>
-        public ManualResetEvent(Context.ManualResetEvent context, string name) : base(context)
+        /// <param name="initialState">Specifies whether wait handle initializes in signal mode or not</param>
+        public ManualResetEvent(Context.ManualResetEvent context, string name, bool initialState) : base(context)
         {
             ContextMapper = ctx => ctx ?? _defaultContext;
 
@@ -25,7 +26,7 @@ namespace DynaLock
                 {
                     if (!ContextMapper.Invoke(context).ObjectDictionary.TryGetValue(name, out tempSemaphore))
                     {
-                        _currentObject = new System.Threading.ManualResetEvent(true);
+                        _currentObject = new System.Threading.ManualResetEvent(initialState);
                         ContextMapper.Invoke(context).ObjectDictionary.TryAdd(name, _currentObject);
                     }
                 }
@@ -37,27 +38,17 @@ namespace DynaLock
 
         public bool WaitOne()
         {
-            if (_currentObject.WaitOne())
-                IsLockOwnedFlag = true;
-
-            return IsLockOwnedFlag;
+            return _currentObject.WaitOne();
         }
 
         public bool WaitOne(int millisecondsTimeout)
         {
-            if (_currentObject.WaitOne(millisecondsTimeout))
-                IsLockOwnedFlag = true;
-
-            return IsLockOwnedFlag;
+            return _currentObject.WaitOne(millisecondsTimeout);
         }
 
         public void Set()
         {
-            if (IsLockOwnedFlag)
-            {
-                _currentObject.Set();
-                IsLockOwnedFlag = false;
-            }
+            _currentObject.Set();
         }
 
         public void Reset()
@@ -67,8 +58,6 @@ namespace DynaLock
 
         public override void Dispose()
         {
-            Set();
-            Reset();
         }
     }
 }

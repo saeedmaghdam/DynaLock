@@ -2,10 +2,10 @@
 > Create and manage locks dynamically in run-time in concurrent software
 
 DynaLock is a library to create and manage locks dynamically in run-time in concurrent software, DynaLock hides all concurrency complexities in distributed systems.
-DynaLock currently supports Monitor, Semaphore and AutoResetEvent.
+DynaLock currently supports Monitor, Semaphore, AutoResetEvent and ManualResetEvent.
 
 ## Important
-#### DynaLock is currecntly under development and only supports Monitor, Semaphore and AutoResetEvent.
+#### DynaLock is currecntly under development and only supports Monitor, Semaphore, AutoResetEvent and ManualResetEvent.
 #### In a very near future, new features will be added to DynaLock
 #### Please contribute in development!
 
@@ -16,6 +16,8 @@ DynaLock currently supports Monitor, Semaphore and AutoResetEvent.
 	* Create and manage semaphore objects dynamically in run-time
 * ### DynaLock's AutoResetEvent
 	* Create and manage auto reset event objects dynamically in run-time	
+* ### DynaLock's ManualResetEvent
+	* Create and manage manual reset event objects dynamically in run-time
 * ### DynaLock's Context
 	* Create specific work space for different domains to avoid CPU and resource wasting, improve performance, etc.
 	* Both DynaLock's Monitor and DynaLock's Semaphore could be injected a context using builder class.
@@ -30,7 +32,7 @@ To install DynaLock in Visual Studio's Package Manager Console:
 
 ```sh
 
-Install-Package DynaLock -Version 2.2.2
+Install-Package DynaLock -Version 2.3.0
 
 ```
 
@@ -38,7 +40,7 @@ To install in a specific project use:
 
 ```sh
 
-Install-Package DynaLock -Version 2.2.2 -ProjectName Your_Project_Name
+Install-Package DynaLock -Version 2.3.0 -ProjectName Your_Project_Name
 
 ```
 
@@ -132,6 +134,8 @@ Also, you could find working examples in [DynaLock.Test] project.
   
 ### Visit [CHANGELOG.md] to see full change log history of DynaLock
 
+* 2.3.0
+	* Added ManualResetEvent to DynaLock
 * 2.2.0
 	* Added AutoResetEvent to DynaLock
 * 2.0.0

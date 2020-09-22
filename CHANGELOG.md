@@ -2,6 +2,11 @@
 # ChangeLog
 All notable changes to this project will be documented in this file.
 
+## 2.3.0 - 2020-09-22
+### Added
+-	Added ManualResetEvent to DynaLock library
+-	Added ManualResetEvent's unit test project to solution
+
 ## 2.2.2 - 2020-09-06
 ### Changed
 -	Multi-targeted DynaLock framework to .Net Standard 1.1 and .Net Framework 4.5

@@ -2,9 +2,9 @@
 
   <PropertyGroup>
     <TargetFrameworks>netstandard1.1;net45</TargetFrameworks>
-    <Version>2.2.2</Version>
-    <AssemblyVersion>2.0.2.2</AssemblyVersion>
-    <FileVersion>2.0.2.2</FileVersion>
+    <Version>2.3.0</Version>
+    <AssemblyVersion>2.0.3.0</AssemblyVersion>
+    <FileVersion>2.0.3.0</FileVersion>
     <Description>DynaLock is a library to create and manage locks dynamically in run-time in concurrent software, DynaLock hides all concurrency complexities in distributed systems.
 Please visit DynaLock's github page for more information.
 https://github.com/saeedmaghdam/DynaLock</Description>

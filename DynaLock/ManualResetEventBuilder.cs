@@ -9,6 +9,7 @@ namespace DynaLock
     {
         private string _name = string.Empty;
         private Context.ManualResetEvent _context = null;
+        private bool _initialState = false;
 
         /// <summary>
         /// Build an instance of ManualResetEvent class
@@ -16,7 +17,7 @@ namespace DynaLock
         /// <returns></returns>
         public ManualResetEvent Build()
         {
-            return new ManualResetEvent(_context, _name);
+            return new ManualResetEvent(_context, _name, _initialState);
         }
 
         /// <summary>
@@ -38,6 +39,17 @@ namespace DynaLock
         public ManualResetEventBuilder Context(Context.ManualResetEvent value)
         {
             this._context = value;
+            return this;
+        }
+
+        /// <summary>
+        /// States whether wait handle initialized in signal mode or not. specifying true to value will initialize in signal mode.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public ManualResetEventBuilder InitialState(bool value)
+        {
+            this._initialState = value;
             return this;
         }
     }
