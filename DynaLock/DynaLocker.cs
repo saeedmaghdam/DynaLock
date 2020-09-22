@@ -9,16 +9,16 @@ namespace DynaLock
     public abstract class DynaLocker : IDynaLocker
     {
         protected Func<IContext, IContext> ContextMapper;
-        protected bool _isLockOwned = false;
-        private IContext _context;
+        protected bool IsLockOwnedFlag = false;
+        protected IContext Context;
 
         /// <summary>
         /// Constructor of DynaLocker class
         /// </summary>
         /// <param name="context"></param>
-        public DynaLocker(IContext context)
+        protected DynaLocker(IContext context)
         {
-            _context = context;
+            Context = context;
         }
 
         /// <summary>
@@ -26,22 +26,24 @@ namespace DynaLock
         /// </summary>
         public object MetaData
         {
-            get => ContextMapper.Invoke(_context).MetaData;
-            set => ContextMapper.Invoke(_context).MetaData = value;
+            get => ContextMapper.Invoke(Context).MetaData;
+            set => ContextMapper.Invoke(Context).MetaData = value;
         }
 
         /// <summary>
         /// Return true if the locker is taken by current thread.
         /// </summary>
         /// <returns></returns>
-        public bool IsLockOwned() => _isLockOwned;
+        public bool IsLockOwned() => IsLockOwnedFlag;
 
         /// <summary>
         /// Dispose the current DynaLocker object
         /// </summary>
         public virtual void Dispose()
         {
-            throw new NotImplementedException();
+            Context = null;
+            ContextMapper = null;
+            MetaData = null;
         }
     }
 }

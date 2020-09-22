@@ -44,7 +44,7 @@ namespace DynaLock
         public void WaitOne(int millisecondsTimeout = 0)
         {
             if (_currentObject.WaitOne(millisecondsTimeout))
-                _isLockOwned = true;
+                IsLockOwnedFlag = true;
         }
 
         /// <summary>
@@ -52,10 +52,10 @@ namespace DynaLock
         /// </summary>
         public void Release()
         {
-            if (_isLockOwned)
+            if (IsLockOwnedFlag)
             {
                 _currentObject.Release();
-                _isLockOwned = false;
+                IsLockOwnedFlag = false;
             }
         }
 

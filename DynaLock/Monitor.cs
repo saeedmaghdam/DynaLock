@@ -37,7 +37,7 @@ namespace DynaLock
         /// </summary>
         public void Enter()
         {
-            System.Threading.Monitor.Enter(_currentObject, ref _isLockOwned);
+            System.Threading.Monitor.Enter(_currentObject, ref IsLockOwnedFlag);
         }
 
         /// <summary>
@@ -47,8 +47,8 @@ namespace DynaLock
         /// <returns></returns>
         public bool TryEnter(int millisecondsTimeout = 0)
         {
-            System.Threading.Monitor.TryEnter(_currentObject, millisecondsTimeout, ref _isLockOwned);
-            return _isLockOwned;
+            System.Threading.Monitor.TryEnter(_currentObject, millisecondsTimeout, ref IsLockOwnedFlag);
+            return IsLockOwnedFlag;
         }
 
         /// <summary>
@@ -56,10 +56,10 @@ namespace DynaLock
         /// </summary>
         public void Exit()
         {
-            if (_isLockOwned)
+            if (IsLockOwnedFlag)
             {
                 System.Threading.Monitor.Exit(_currentObject);
-                _isLockOwned = false;
+                IsLockOwnedFlag = false;
             }
         }
 

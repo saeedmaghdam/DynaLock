@@ -38,25 +38,25 @@ namespace DynaLock
         public bool WaitOne()
         {
             if (_currentObject.WaitOne())
-                _isLockOwned = true;
+                IsLockOwnedFlag = true;
 
-            return _isLockOwned;
+            return IsLockOwnedFlag;
         }
 
         public bool WaitOne(int millisecondsTimeout)
         {
             if (_currentObject.WaitOne(millisecondsTimeout))
-                _isLockOwned = true;
+                IsLockOwnedFlag = true;
 
-            return _isLockOwned;
+            return IsLockOwnedFlag;
         }
 
         public void Set()
         {
-            if (_isLockOwned)
+            if (IsLockOwnedFlag)
             {
                 _currentObject.Set();
-                _isLockOwned = false;
+                IsLockOwnedFlag = false;
             }
         }
 
