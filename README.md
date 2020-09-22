@@ -32,7 +32,7 @@ To install DynaLock in Visual Studio's Package Manager Console:
 
 ```sh
 
-Install-Package DynaLock -Version 2.3.2
+Install-Package DynaLock -Version 2.3.3
 
 ```
 
@@ -40,7 +40,7 @@ To install in a specific project use:
 
 ```sh
 
-Install-Package DynaLock -Version 2.3.2 -ProjectName Your_Project_Name
+Install-Package DynaLock -Version 2.3.3 -ProjectName Your_Project_Name
 
 ```
 

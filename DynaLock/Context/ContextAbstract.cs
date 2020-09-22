@@ -13,7 +13,7 @@ namespace DynaLock.Context
         private object _metaDataLocker = new object();
         private bool _isLockTakenFlag;
         private object _contextLocker = new object();
-        bool _isContextLocked = false;
+        private bool _isContextLocked = false;
 
         /// <summary>
         /// A dictionary to store objects required by DynaLocker
@@ -65,7 +65,9 @@ namespace DynaLock.Context
 
         public bool Lock()
         {
-            System.Threading.Monitor.Enter(_contextLocker, ref _isContextLocked);
+            bool isContextLocked = false;
+            System.Threading.Monitor.Enter(_contextLocker, ref isContextLocked);
+            _isContextLocked = isContextLocked;
             return _isContextLocked;
         }
 
