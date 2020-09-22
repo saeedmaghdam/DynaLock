@@ -21,5 +21,13 @@ namespace DynaLock.Framework
         /// </summary>
         /// <returns></returns>
         bool IsLockOwned();
+
+        /// <summary>
+        /// Returns current context
+        /// </summary>
+        IContext GetContext
+        {
+            get;
+        }
     }
 }

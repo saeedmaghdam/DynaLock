@@ -31,5 +31,27 @@ namespace DynaLock.Framework
             get;
             set;
         }
+
+        /// <summary>
+        /// Lock context to modify meta data and etc
+        /// </summary>
+        /// <returns></returns>
+        bool Lock();
+
+        /// <summary>
+        /// Unlock context if it's locked already
+        /// </summary>
+        void Unlock();
+        /// <summary>
+        /// Indicated whether meta data is null or not
+        /// </summary>
+        object IsMetaDataNull
+        {
+            get;
+        }
+        /// <summary>
+        /// Set meta data to null
+        /// </summary>
+        void SetMetaDataNull();
     }
 }

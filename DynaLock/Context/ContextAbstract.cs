@@ -1,5 +1,6 @@
 ﻿using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using DynaLock.Framework;
 
 namespace DynaLock.Context
@@ -10,6 +11,9 @@ namespace DynaLock.Context
         private object _lockerObject;
         private object _metaData;
         private object _metaDataLocker = new object();
+        private bool _isLockTakenFlag;
+        private object _contextLocker = new object();
+        bool _isContextLocked = false;
 
         /// <summary>
         /// A dictionary to store objects required by DynaLocker
@@ -38,10 +42,40 @@ namespace DynaLock.Context
             }
         }
 
+        public object IsMetaDataNull
+        {
+            get
+            {
+                lock (_metaDataLocker)
+                    return _metaData == null;
+            }
+        }
+
+        public void SetMetaDataNull()
+        {
+            lock (_metaDataLocker)
+                _metaData = null;
+        }
+
         protected ContextAbstract()
         {
             _lockerObject = new List<object>();
             _objectDictionary = new ConcurrentDictionary<string, object>();
+        }
+
+        public bool Lock()
+        {
+            System.Threading.Monitor.Enter(_contextLocker, ref _isContextLocked);
+            return _isContextLocked;
+        }
+
+        public void Unlock()
+        {
+            if (_isContextLocked)
+            {
+                System.Threading.Monitor.Exit(_contextLocker);
+                _isContextLocked = false;
+            }
         }
     }
 }

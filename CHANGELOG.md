@@ -2,6 +2,11 @@
 # ChangeLog
 All notable changes to this project will be documented in this file.
 
+## 2.3.1 - 2020-09-22
+### Added
+-	Added locking feature to context classes
+-	Get context from locker objects
+
 ## 2.3.0 - 2020-09-22
 ### Added
 -	Added ManualResetEvent to DynaLock library

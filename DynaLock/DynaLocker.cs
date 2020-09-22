@@ -36,6 +36,8 @@ namespace DynaLock
         /// <returns></returns>
         public bool IsLockOwned() => IsLockOwnedFlag;
 
+        public IContext GetContext => ContextMapper.Invoke(Context);
+
         /// <summary>
         /// Dispose the current DynaLocker object
         /// </summary>
