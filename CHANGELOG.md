@@ -1,7 +1,13 @@
 
 
+
 # ChangeLog
 All notable changes to this project will be documented in this file.
+
+## 2.5.1 - 2021-08-15
+### Changed
+- Added return type (boolean) to SemahoreSlim's WaitAsync method.
+
 ## 2.5.0 - 2021-08-15
 ### Added
 - Added SemaphoreSlim to DynaLock.
