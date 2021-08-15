@@ -1,6 +1,10 @@
 
+
 # ChangeLog
 All notable changes to this project will be documented in this file.
+## 2.5.0 - 2021-08-15
+### Added
+- Added SemaphoreSlim to DynaLock.
 
 ## 2.4.1 - 2020-09-22
 ### Added

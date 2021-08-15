@@ -1,11 +1,12 @@
+
 # DynaLock
 > Create and manage locks dynamically in run-time in concurrent software
 
 DynaLock is a library to create and manage locks dynamically in run-time in concurrent software, DynaLock hides all concurrency complexities in distributed systems.
-DynaLock currently supports Monitor, Semaphore, AutoResetEvent and ManualResetEvent.
+DynaLock currently supports Monitor, Semaphore, SemaphoreSlim, AutoResetEvent and ManualResetEvent.
 
 ## Important
-#### DynaLock is currecntly under development and only supports Monitor, Semaphore, AutoResetEvent and ManualResetEvent.
+#### DynaLock is currecntly under development and only supports Monitor, Semaphore, SemaphoreSlim, AutoResetEvent and ManualResetEvent.
 #### In a very near future, new features will be added to DynaLock
 #### Please contribute in development!
 
@@ -14,6 +15,8 @@ DynaLock currently supports Monitor, Semaphore, AutoResetEvent and ManualResetEv
 	* Create and manage locker objects dynamically in run-time
 * ### DynaLock's Semaphore
 	* Create and manage semaphore objects dynamically in run-time
+* ### DynaLock's SemaphoreSlim
+	* Create and manage semaphore slim objects dynamically in run-time
 * ### DynaLock's AutoResetEvent
 	* Create and manage auto reset event objects dynamically in run-time	
 * ### DynaLock's ManualResetEvent
@@ -32,7 +35,7 @@ To install DynaLock in Visual Studio's Package Manager Console:
 
 ```sh
 
-Install-Package DynaLock -Version 2.4.1
+Install-Package DynaLock -Version 2.5.0
 
 ```
 
@@ -40,7 +43,7 @@ To install in a specific project use:
 
 ```sh
 
-Install-Package DynaLock -Version 2.4.1 -ProjectName Your_Project_Name
+Install-Package DynaLock -Version 2.5.0 -ProjectName Your_Project_Name
 
 ```
 
@@ -133,7 +136,8 @@ Also, you could find working examples in [DynaLock.Test] project.
 ## Release History
   
 ### Visit [CHANGELOG.md] to see full change log history of DynaLock
-
+* 2.5.0
+	* Added SemaphoreSlim to DynaLock
 * 2.4.0
 	* Added flag to DynaLock to give more power to developers
 * 2.3.0
