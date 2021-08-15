@@ -45,10 +45,12 @@ namespace DynaLock
         /// <param name="millisecondsTimeout">The number of milliseconds to wait, or Infinite (-1) to wait indefinitely.</param>
         /// /// <param name="cancellationToken">Cancellation token.</param>
         /// <returns>Returns a task</returns>
-        public async Task WaitAsync(int millisecondsTimeout = 0, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<bool> WaitAsync(int millisecondsTimeout = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (await _currentObject.WaitAsync(millisecondsTimeout, cancellationToken))
                 IsLockOwnedFlag = true;
+
+            return IsLockOwnedFlag;
         }
 
         /// <summary>
