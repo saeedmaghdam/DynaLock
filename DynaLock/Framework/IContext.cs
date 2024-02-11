@@ -5,12 +5,12 @@ namespace DynaLock.Framework
     /// <summary>
     /// DynaLock's context interface
     /// </summary>
-    public interface IContext
+    public interface IContext<TType>
     {
         /// <summary>
         /// A dictionary to store objects required by DynaLocker
         /// </summary>
-        ConcurrentDictionary<string, object> ObjectDictionary
+        ConcurrentDictionary<string, TType> ObjectDictionary
         {
             get;
         }

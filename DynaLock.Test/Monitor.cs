@@ -9,7 +9,7 @@ namespace DynaLock.Test
     {
         private class TestContext{
             public int BankAccount;
-            public DynaLock.Context.Monitor DynaLockContext;
+            public DynaLock.Context.Context<object> DynaLockContext;
         }
 
         [SetUp]
@@ -46,14 +46,14 @@ namespace DynaLock.Test
             };
 
             TestContext p1Context = new TestContext(){
-                DynaLockContext = new DynaLock.Context.Monitor()
+                DynaLockContext = new DynaLock.Context.Context<object>()
             };
             TestContext p2Context = new TestContext(){
-                DynaLockContext = new DynaLock.Context.Monitor()
+                DynaLockContext = new DynaLock.Context.Context<object>()
             };
             TestContext p3Context = new TestContext();
             TestContext p4Context = new TestContext(){
-                DynaLockContext = new DynaLock.Context.Monitor()
+                DynaLockContext = new DynaLock.Context.Context<object>()
             };
 
             var tasks = new List<Task>();

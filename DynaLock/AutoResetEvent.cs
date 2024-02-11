@@ -1,38 +1,39 @@
 ﻿using DynaLock.Framework;
+using SystemAutoResetEvent = System.Threading.AutoResetEvent;
 
 namespace DynaLock
 {
     /// <summary>
     /// DynaLocker AutoResetEvent to create and manage locker objects dynamically in run-time
     /// </summary>
-    public class AutoResetEvent : DynaLocker, IAutoResetEvent
+    public class AutoResetEvent : DynaLocker<SystemAutoResetEvent>, IAutoResetEvent
     {
-        private static IContext _defaultContext = new Context.AutoResetEvent();
-        private readonly System.Threading.AutoResetEvent _currentObject;
+        private static IContext<SystemAutoResetEvent> _defaultContext = new Context.Context<SystemAutoResetEvent>();
+        private readonly SystemAutoResetEvent _currentObject;
 
         /// <summary>
         /// Constructor of AutoResetEvent class
         /// </summary>
         /// <param name="context">Specify a context to have different contexts in different domains</param>
         /// <param name="name">Name of the new AutoResetEvent</param>
-        public AutoResetEvent(Context.AutoResetEvent context, string name) : base(context)
+        public AutoResetEvent(Context.Context<SystemAutoResetEvent> context, string name) : base(context)
         {
             ContextMapper = ctx => ctx ?? _defaultContext;
 
-            if (!ContextMapper.Invoke(context).ObjectDictionary.TryGetValue(name, out var tempSemaphore))
+            if (!ContextMapper.Invoke(context).ObjectDictionary.TryGetValue(name, out var currentManualAutoReset))
             {
                 lock (ContextMapper.Invoke(context).LockerObject)
                 {
-                    if (!ContextMapper.Invoke(context).ObjectDictionary.TryGetValue(name, out tempSemaphore))
+                    if (!ContextMapper.Invoke(context).ObjectDictionary.TryGetValue(name, out currentManualAutoReset))
                     {
-                        _currentObject = new System.Threading.AutoResetEvent(true);
+                        _currentObject = new SystemAutoResetEvent(true);
                         ContextMapper.Invoke(context).ObjectDictionary.TryAdd(name, _currentObject);
                     }
                 }
             }
 
-            if (tempSemaphore != null)
-                _currentObject = (System.Threading.AutoResetEvent)tempSemaphore;
+            if (currentManualAutoReset != null)
+                _currentObject = currentManualAutoReset;
         }
 
         public bool WaitOne()

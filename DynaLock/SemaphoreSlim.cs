@@ -1,16 +1,17 @@
 ﻿using DynaLock.Framework;
 using System.Threading;
 using System.Threading.Tasks;
+using SystemSemaphoreSlim = System.Threading.SemaphoreSlim;
 
 namespace DynaLock
 {
     /// <summary>
     /// DynaLocker Monitor to create and manage semaphoreSlims dynamically in run-time
     /// </summary>
-    public class SemaphoreSlim : DynaLocker, ISemaphoreSlim
+    public class SemaphoreSlim : DynaLocker<SystemSemaphoreSlim>, ISemaphoreSlim
     {
-        private static IContext _defaultContext = new Context.SemaphoreSlim();
-        private readonly System.Threading.SemaphoreSlim _currentObject;
+        private static IContext<SystemSemaphoreSlim> _defaultContext = new Context.Context<SystemSemaphoreSlim>();
+        private readonly SystemSemaphoreSlim _currentObject;
 
         /// <summary>
         /// Constructor of SemaphoreSlim class
@@ -19,7 +20,7 @@ namespace DynaLock
         /// <param name="name">Name of the new SemaphoreSlim</param>
         /// <param name="initialCount">The initial number of requests for the semaphoreSlim that can be granted concurrently.</param>
         /// <param name="maximumCount">The maximum number of requests for the semaphoreSlim that can be granted concurrently.</param>
-        public SemaphoreSlim(Context.SemaphoreSlim context, string name, int initialCount, int maximumCount) : base(context)
+        public SemaphoreSlim(Context.Context<SystemSemaphoreSlim> context, string name, int initialCount, int maximumCount) : base(context)
         {
             ContextMapper = ctx => ctx ?? _defaultContext;
 
@@ -36,7 +37,7 @@ namespace DynaLock
             }
 
             if (tempSemaphoreSlim != null)
-                _currentObject = (System.Threading.SemaphoreSlim)tempSemaphoreSlim;
+                _currentObject = tempSemaphoreSlim;
         }
 
         /// <summary>

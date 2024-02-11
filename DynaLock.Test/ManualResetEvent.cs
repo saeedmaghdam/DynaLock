@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
 using NUnit.Framework;
+using SystemManualResetEvent = System.Threading.ManualResetEvent;
 
 namespace DynaLock.Test
 {
@@ -11,7 +11,7 @@ namespace DynaLock.Test
         private class TestContext
         {
             public int BankAccount;
-            public DynaLock.Context.ManualResetEvent DynaLockContext;
+            public DynaLock.Context.Context<SystemManualResetEvent> DynaLockContext;
         }
 
         [SetUp]
@@ -54,7 +54,7 @@ namespace DynaLock.Test
 
             TestContext p1Context = new TestContext()
             {
-                DynaLockContext = new DynaLock.Context.ManualResetEvent()
+                DynaLockContext = new DynaLock.Context.Context<SystemManualResetEvent>()
             };
 
             var tasks = new List<Task>();

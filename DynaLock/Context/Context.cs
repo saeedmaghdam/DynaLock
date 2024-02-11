@@ -1,25 +1,23 @@
 ﻿using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
 using DynaLock.Framework;
 
 namespace DynaLock.Context
 {
-    public abstract class ContextAbstract : IContext
+    public class Context<TType> : IContext<TType>
     {
-        private ConcurrentDictionary<string, object> _objectDictionary;
-        private object _lockerObject;
+        private readonly ConcurrentDictionary<string, TType> _objectDictionary;
+        private readonly object _lockerObject;
         private object _metaData;
-        private object _metaDataLocker = new object();
-        private bool _isLockTakenFlag;
-        private object _contextLocker = new object();
+        private readonly object _metaDataLocker = new object();
+        private readonly object _contextLocker = new object();
         private bool _isContextLocked = false;
 
-        private IFlag _flag1;
-        private IFlag _flag2;
-        private IFlag _flag3;
-        private IFlag _flag4;
-        private IFlag _flag5;
+        private readonly IFlag _flag1;
+        private readonly IFlag _flag2;
+        private readonly IFlag _flag3;
+        private readonly IFlag _flag4;
+        private readonly IFlag _flag5;
 
         public IFlag Flag1 => _flag1;
         public IFlag Flag2 => _flag2;
@@ -30,7 +28,7 @@ namespace DynaLock.Context
         /// <summary>
         /// A dictionary to store objects required by DynaLocker
         /// </summary>
-        public ConcurrentDictionary<string, object> ObjectDictionary => _objectDictionary;
+        public ConcurrentDictionary<string, TType> ObjectDictionary => _objectDictionary;
 
         /// <summary>
         /// Generic locker object used to get objects from dictionary.
@@ -63,10 +61,10 @@ namespace DynaLock.Context
             }
         }
 
-        protected ContextAbstract()
+        public Context()
         {
             _lockerObject = new List<object>();
-            _objectDictionary = new ConcurrentDictionary<string, object>();
+            _objectDictionary = new ConcurrentDictionary<string, TType>();
 
             _flag1 = new Flag();
             _flag2 = new Flag();

@@ -1,4 +1,6 @@
-﻿namespace DynaLock
+﻿using SystemSemaphoreSlim = System.Threading.SemaphoreSlim;
+
+namespace DynaLock
 {
     /// <summary>
     /// DynaLocker SemaphoreSlim builder
@@ -6,7 +8,7 @@
     public class SemaphoreSlimBuilder
     {
         private string _name = string.Empty;
-        private Context.SemaphoreSlim _context = null;
+        private Context.Context<SystemSemaphoreSlim> _context = null;
         private int _initialCount = 1;
         private int _maximumCount = 1;
 
@@ -35,7 +37,7 @@
         /// </summary>
         /// <param name="value">An instance of SemaphoreSlim context</param>
         /// <returns></returns>
-        public SemaphoreSlimBuilder Context(Context.SemaphoreSlim value)
+        public SemaphoreSlimBuilder Context(Context.Context<SystemSemaphoreSlim> value)
         {
             this._context = value;
             return this;

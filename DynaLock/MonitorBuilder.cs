@@ -1,4 +1,5 @@
 ﻿using DynaLock.Framework;
+using SystemMonitor = System.Threading.Monitor;
 
 namespace DynaLock
 {
@@ -8,7 +9,7 @@ namespace DynaLock
     public class MonitorBuilder : IBuilder<Monitor>
     {
         private string _name = string.Empty;
-        private Context.Monitor _context = null;
+        private Context.Context<object> _context = null;
 
         /// <summary>
         /// Build an instance of Monitor class
@@ -35,7 +36,7 @@ namespace DynaLock
         /// </summary>
         /// <param name="value">An instance of Monitor context</param>
         /// <returns></returns>
-        public MonitorBuilder Context(Context.Monitor value)
+        public MonitorBuilder Context(Context.Context<object> value)
         {
             this._context = value;
             return this;

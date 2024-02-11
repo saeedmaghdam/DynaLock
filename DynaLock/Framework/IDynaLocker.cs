@@ -5,7 +5,7 @@ namespace DynaLock.Framework
     /// <summary>
     /// DynaLocker interface
     /// </summary>
-    public interface IDynaLocker : IDisposable
+    public interface IDynaLocker<TType> : IDisposable
     {
         /// <summary>
         /// An object to store meta data in current context.
@@ -25,7 +25,7 @@ namespace DynaLock.Framework
         /// <summary>
         /// Returns current context
         /// </summary>
-        IContext GetContext
+        IContext<TType> GetContext
         {
             get;
         }

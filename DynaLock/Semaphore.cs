@@ -1,14 +1,15 @@
 ﻿using DynaLock.Framework;
+using SystemSemaphore = System.Threading.Semaphore;
 
 namespace DynaLock
 {
     /// <summary>
     /// DynaLocker Monitor to create and manage semaphores dynamically in run-time
     /// </summary>
-    public class Semaphore : DynaLocker, ISemaphore
+    public class Semaphore : DynaLocker<SystemSemaphore>, ISemaphore
     {
-        private static IContext _defaultContext = new Context.Semaphore();
-        private readonly System.Threading.Semaphore _currentObject;
+        private static IContext<SystemSemaphore> _defaultContext = new Context.Context<SystemSemaphore>();
+        private readonly SystemSemaphore _currentObject;
 
         /// <summary>
         /// Constructor of Semaphore class
@@ -17,7 +18,7 @@ namespace DynaLock
         /// <param name="name">Name of the new Semaphore</param>
         /// <param name="initialCount">The initial number of requests for the semaphore that can be granted concurrently.</param>
         /// <param name="maximumCount">The maximum number of requests for the semaphore that can be granted concurrently.</param>
-        public Semaphore(Context.Semaphore context, string name, int initialCount, int maximumCount) : base(context)
+        public Semaphore(Context.Context<SystemSemaphore> context, string name, int initialCount, int maximumCount) : base(context)
         {
             ContextMapper = ctx => ctx ?? _defaultContext;
 
@@ -27,14 +28,14 @@ namespace DynaLock
                 {
                     if (!ContextMapper.Invoke(context).ObjectDictionary.TryGetValue(name, out tempSemaphore))
                     {
-                        _currentObject = new System.Threading.Semaphore(initialCount, maximumCount, name);
+                        _currentObject = new SystemSemaphore(initialCount, maximumCount, name);
                         ContextMapper.Invoke(context).ObjectDictionary.TryAdd(name, _currentObject);
                     }
                 }
             }
 
             if (tempSemaphore != null)
-                _currentObject = (System.Threading.Semaphore)tempSemaphore;
+                _currentObject = tempSemaphore;
         }
 
         /// <summary>

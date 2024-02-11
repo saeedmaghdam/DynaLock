@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using NUnit.Framework;
+using SystemAutoResetEvent = System.Threading.AutoResetEvent;
 
 namespace DynaLock.Test
 {
@@ -9,7 +10,7 @@ namespace DynaLock.Test
     {
         private class TestContext{
             public int BankAccount;
-            public DynaLock.Context.AutoResetEvent DynaLockContext;
+            public DynaLock.Context.Context<SystemAutoResetEvent> DynaLockContext;
         }
 
         [SetUp]
@@ -46,14 +47,14 @@ namespace DynaLock.Test
             };
 
             TestContext p1Context = new TestContext(){
-                DynaLockContext = new DynaLock.Context.AutoResetEvent()
+                DynaLockContext = new DynaLock.Context.Context<SystemAutoResetEvent>()
             };
             TestContext p2Context = new TestContext(){
-                DynaLockContext = new DynaLock.Context.AutoResetEvent()
+                DynaLockContext = new DynaLock.Context.Context<SystemAutoResetEvent>()
             };
             TestContext p3Context = new TestContext();
             TestContext p4Context = new TestContext(){
-                DynaLockContext = new DynaLock.Context.AutoResetEvent()
+                DynaLockContext = new DynaLock.Context.Context<SystemAutoResetEvent>()
             };
 
             var tasks = new List<Task>();

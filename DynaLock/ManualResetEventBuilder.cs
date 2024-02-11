@@ -1,4 +1,5 @@
 ﻿using DynaLock.Framework;
+using SystemManualResetEvent = System.Threading.ManualResetEvent;
 
 namespace DynaLock
 {
@@ -8,7 +9,7 @@ namespace DynaLock
     public class ManualResetEventBuilder : IBuilder<ManualResetEvent>
     {
         private string _name = string.Empty;
-        private Context.ManualResetEvent _context = null;
+        private Context.Context<SystemManualResetEvent> _context = null;
         private bool _initialState = false;
 
         /// <summary>
@@ -36,7 +37,7 @@ namespace DynaLock
         /// </summary>
         /// <param name="value">An instance of ManualResetEvent context</param>
         /// <returns></returns>
-        public ManualResetEventBuilder Context(Context.ManualResetEvent value)
+        public ManualResetEventBuilder Context(Context.Context<SystemManualResetEvent> value)
         {
             this._context = value;
             return this;

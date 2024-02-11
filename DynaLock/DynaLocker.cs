@@ -6,17 +6,17 @@ namespace DynaLock
     /// <summary>
     /// DynaLocker base class
     /// </summary>
-    public abstract class DynaLocker : IDynaLocker
+    public abstract class DynaLocker<TType> : IDynaLocker<TType>
     {
-        protected Func<IContext, IContext> ContextMapper;
+        protected Func<IContext<TType>, IContext<TType>> ContextMapper;
         protected bool IsLockOwnedFlag = false;
-        protected IContext Context;
+        protected IContext<TType> Context;
 
         /// <summary>
         /// Constructor of DynaLocker class
         /// </summary>
         /// <param name="context"></param>
-        protected DynaLocker(IContext context)
+        protected DynaLocker(IContext<TType> context)
         {
             Context = context;
         }
@@ -36,7 +36,7 @@ namespace DynaLock
         /// <returns></returns>
         public bool IsLockOwned() => IsLockOwnedFlag;
 
-        public IContext GetContext => ContextMapper.Invoke(Context);
+        public IContext<TType> GetContext => ContextMapper.Invoke(Context);
 
         /// <summary>
         /// Dispose the current DynaLocker object

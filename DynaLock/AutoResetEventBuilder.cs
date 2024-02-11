@@ -1,4 +1,5 @@
 ﻿using DynaLock.Framework;
+using SystemAutoResetEvent = System.Threading.AutoResetEvent;
 
 namespace DynaLock
 {
@@ -8,7 +9,7 @@ namespace DynaLock
     public class AutoResetEventBuilder : IBuilder<AutoResetEvent>
     {
         private string _name = string.Empty;
-        private Context.AutoResetEvent _context = null;
+        private Context.Context<SystemAutoResetEvent> _context = null;
 
         /// <summary>
         /// Build an instance of AutoResetEvent class
@@ -35,7 +36,7 @@ namespace DynaLock
         /// </summary>
         /// <param name="value">An instance of AutoResetEvent context</param>
         /// <returns></returns>
-        public AutoResetEventBuilder Context(Context.AutoResetEvent value)
+        public AutoResetEventBuilder Context(Context.Context<SystemAutoResetEvent> value)
         {
             this._context = value;
             return this;

@@ -1,13 +1,14 @@
 ﻿using DynaLock.Framework;
+using SystemMonitor = System.Threading.Monitor;
 
 namespace DynaLock
 {
     /// <summary>
     /// DynaLocker Monitor to create and manage locker objects dynamically in run-time
     /// </summary>
-    public class Monitor : DynaLocker, IMonitor
+    public class Monitor : DynaLocker<object>, IMonitor
     {
-        private static IContext _defaultContext = new Context.Monitor();
+        private static IContext<object> _defaultContext = new Context.Context<object>();
         private readonly object _currentObject;
 
         /// <summary>
@@ -15,7 +16,7 @@ namespace DynaLock
         /// </summary>
         /// <param name="context">Specify a context to have different contexts in different domains</param>
         /// <param name="name">Name of the new Monitor</param>
-        public Monitor(Context.Monitor context, string name) : base(context)
+        public Monitor(Context.Context<object> context, string name) : base(context)
         {
             ContextMapper = ctx => ctx ?? _defaultContext;
 
@@ -37,7 +38,7 @@ namespace DynaLock
         /// </summary>
         public void Enter()
         {
-            System.Threading.Monitor.Enter(_currentObject, ref IsLockOwnedFlag);
+            SystemMonitor.Enter(_currentObject, ref IsLockOwnedFlag);
         }
 
         /// <summary>
@@ -47,7 +48,7 @@ namespace DynaLock
         /// <returns></returns>
         public bool TryEnter(int millisecondsTimeout = 0)
         {
-            System.Threading.Monitor.TryEnter(_currentObject, millisecondsTimeout, ref IsLockOwnedFlag);
+            SystemMonitor.TryEnter(_currentObject, millisecondsTimeout, ref IsLockOwnedFlag);
             return IsLockOwnedFlag;
         }
 
@@ -58,7 +59,7 @@ namespace DynaLock
         {
             if (IsLockOwnedFlag)
             {
-                System.Threading.Monitor.Exit(_currentObject);
+                SystemMonitor.Exit(_currentObject);
                 IsLockOwnedFlag = false;
             }
         }
